@@ -1,0 +1,20 @@
+{{define "content"}}
+<h1>ДА ДА Мой Todo List</h1>
+
+<form action="/add" method="POST">
+	<input type="text" name="task" required />
+	<button type="submit">ЖМИ ЖМИ</button>
+</form>
+
+<ul>
+	{{range .Tasks}}
+	<li>
+		{{if .Completed}}<s>{{.Text}}</s>{{else}}{{.Text}}{{end}}
+		<form action="/delete" method="POST" style="display: inline">
+			<input type="hidden" name="id" value="{{.ID}}" />
+			<button type="submit">Х</button>
+		</form>
+	</li>
+	{{end}}
+</ul>
+{{end}}
